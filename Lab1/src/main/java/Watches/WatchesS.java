@@ -1,45 +1,26 @@
 package Watches;
 
-public class WatchesS {
-    private String name;
-    private double price;
-    private int hours, minutes, seconds;
+public class WatchesS extends Watches{
+    protected int seconds;
 
-    public WatchesS(String name_, double price_) {
-        name = name_;
-        price = price_;
-        hours = 0;
-        minutes = 0;
-        seconds = 0;
+    public WatchesS(String name, double price) {
+        super(name, price);
+        this.seconds = 0;
     }
 
-    public void setTime(int hours_, int minutes_, int seconds_) throws Exception {
-        if (hours_ < 0 || hours_ > 11)
-            throw new Exception("Invalid hour");
-        if (minutes_ < 0 || minutes_ > 59)
-            throw new Exception("Invalid minutes");
-        if (seconds_ < 0 || seconds_ > 59)
+    public void setTime(int hours, int minutes, int seconds) throws Exception {
+        super.setTime(hours, minutes);
+        if (seconds < 0 || seconds > 59)
             throw new Exception("Invalid seconds");
-        hours = hours_;
-        minutes = minutes_;
-        seconds = seconds_;
+        this.seconds = seconds;
     }
 
-    public void addTime(int hours_, int minutes_, int seconds_) {
-        hours = (hours + hours_) % 12;
-        minutes = (minutes + minutes_) % 60;
-        seconds = (seconds + seconds_) % 60;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
+    public void addTime(int hours, int minutes, int seconds) {
+        super.addTime(hours, minutes);
+        this.seconds = (this.seconds + seconds) % 60;
     }
 
     public int[] getTime() {
-        return new int[]{hours, minutes, seconds};
+        return new int[]{this.hours, this.minutes, this.seconds};
     }
 }

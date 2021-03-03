@@ -1,40 +1,29 @@
 package Watches;
 
-public class Watches {
-    private String name;
-    private double price;
-    private int hours, minutes;
+public class Watches extends BaseWatch {
+    protected int hours, minutes;
 
-    public Watches(String name_, double price_) {
-        name = name_;
-        price = price_;
-        hours = 0;
-        minutes = 0;
+    public Watches(String name, double price) {
+        super(name, price);
+        this.hours = 0;
+        this.minutes = 0;
     }
 
-    public void setTime(int hours_, int minutes_) throws Exception {
-        if (hours_ < 0 || hours_ > 11)
+    public void setTime(int hours, int minutes) throws Exception {
+        if (hours < 0 || hours > 11)
             throw new Exception("Invalid hour");
-        if (minutes_ < 0 || minutes_ > 59)
+        if (minutes < 0 || minutes > 59)
             throw new Exception("Invalid minutes");
-        hours = hours_;
-        minutes = minutes_;
+        this.hours = hours;
+        this.minutes = minutes;
     }
 
-    public void addTime(int hours_, int minutes_) {
-        hours = (hours + hours_) % 12;
-        minutes = (minutes + minutes_) % 60;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
+    public void addTime(int hours, int minutes) {
+        this.hours = (this.hours + hours) % 12;
+        this.minutes = (this.minutes + minutes) % 60;
     }
 
     public int[] getTime() {
-        return new int[]{hours, minutes};
+        return new int[]{this.hours, this.minutes};
     }
 }
