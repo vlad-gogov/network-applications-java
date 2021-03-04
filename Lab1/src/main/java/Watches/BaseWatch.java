@@ -1,6 +1,6 @@
 package Watches;
 
-public abstract class BaseWatch {
+public class BaseWatch {
     private String name;
     private double price;
 
