@@ -1,5 +1,7 @@
+target
+.idea
+.vscode
+maven
 .classpath
+.settings
 .project
-/Lab1/.settings/*
-/maven/*
-/Lab1/target/*
