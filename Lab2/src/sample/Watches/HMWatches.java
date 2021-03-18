@@ -8,7 +8,7 @@ public class HMWatches implements ITimer {
     int hours = 0;
     int minutes = 0;
 
-    Vector<IAlarm> alarms = new Vector<IAlarm>();
+    Vector<IAlarm> alarms = new Vector<>();
 
     public HMWatches(String name) {
         this.name = name;
@@ -40,7 +40,13 @@ public class HMWatches implements ITimer {
 
     @Override
     public void addMinutes(int minutes) {
-        this.minutes = (this.minutes + minutes) % 60;
+        int m = this.minutes + minutes;
+        if (m > 60) {
+            int h = m / 60;
+            m = h * 60 - minutes;
+            addHours(h);
+        }
+        this.minutes = m;
     }
 
     @Override
@@ -55,18 +61,14 @@ public class HMWatches implements ITimer {
 
     @Override
     public Vector<IAlarm> isAlarm() {
-        Vector<IAlarm> arrayAlarm = new Vector<IAlarm>();
+        Vector<IAlarm> vectorAlarm = new Vector<>();
         for (int i = 0; i < alarms.size(); i++) {
             IAlarm alarm = alarms.elementAt(i);
-            try {
-                if (alarm.getHours() == this.hours && alarm.getMinutes() == this.minutes) {
-                    arrayAlarm.add(alarm);
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            if (alarm.getHours() == this.hours && alarm.getMinutes() == this.minutes) {
+                vectorAlarm.add(alarm);
             }
         }
-        return arrayAlarm;
+        return vectorAlarm;
     }
 
     public String toString() {

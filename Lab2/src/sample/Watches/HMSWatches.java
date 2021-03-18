@@ -20,12 +20,18 @@ public class HMSWatches extends HMWatches {
 
     @Override
     public void addSeconds(int seconds) {
-        this.seconds = (this.seconds + seconds) % 60;
+        int s = this.seconds + seconds;
+        if (s > 60) {
+            int m = s / 60;
+            s = m * 60 - seconds;
+            addMinutes(m);
+        }
+        this.seconds = s;
     }
 
     @Override
     public Vector<IAlarm> isAlarm() {
-        Vector<IAlarm> arrayAlarm = new Vector<IAlarm>();
+        Vector<IAlarm> vectorAlarm = new Vector<IAlarm>();
         for (int i = 0; i < alarms.size(); i++) {
             IAlarm alarm = alarms.elementAt(i);
             int seconds = 0;
@@ -34,15 +40,11 @@ public class HMSWatches extends HMWatches {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            try {
-                if (alarm.getHours() == this.hours && alarm.getMinutes() == this.minutes && seconds == this.seconds) {
-                    arrayAlarm.add(alarm);
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            if (alarm.getHours() == this.hours && alarm.getMinutes() == this.minutes && seconds == this.seconds) {
+                vectorAlarm.add(alarm);
             }
         }
-        return arrayAlarm;
+        return vectorAlarm;
     }
 
     public String toString() {
