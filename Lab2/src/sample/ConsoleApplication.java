@@ -27,7 +27,7 @@ public class ConsoleApplication {
                 }
             } else if (state == 2) {
                 System.out.println("Введите время срабатывания будильника: ");
-                HMSAlarm alarm = new HMSAlarm();
+                IAlarm alarm = BAlarm.build(alarmType.HMSAlarm);
                 try {
                     alarm.setHours(in.nextInt());
                     alarm.setMinutes(in.nextInt());
