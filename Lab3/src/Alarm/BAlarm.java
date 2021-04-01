@@ -1,7 +1,5 @@
 package Alarm;
 
-import Timer.ITimer;
-
 public class BAlarm {
     public static IAlarm build(EAlarm type) {
         if (type == EAlarm.HMAlarm)

@@ -66,7 +66,7 @@ public class WatchWindow implements IListener {
         alarms_list.setModel(model_alarms);
         alarm_slot = () -> {
             try {
-                String text = "Alarm " + watch.getHours() + ":" + watch.getMinutes() + ":" + watch.getSeconds();
+                String text = "Alarm: " + watch.getHours() + ":" + watch.getMinutes() + ":" + watch.getSeconds();
                 notify_alarm.setText(text);
                 JFrame alarm_alert = new JFrame("Alert alarm");
                 alarm_alert.setContentPane(new AlertAlarm(text).getPanel());
