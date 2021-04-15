@@ -1,6 +1,6 @@
 package Watch;
 
-import Manager.EventListener;
+import Manager.Listener;
 import Timer.ITimer;
 
 public interface IWatch extends ITimer {
@@ -11,5 +11,5 @@ public interface IWatch extends ITimer {
     public void tick();
 
     public void broadcast();
-    public void addListener(EventListener listener);
+    public void addListener(Listener listener);
 }

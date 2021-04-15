@@ -2,7 +2,7 @@ package Watch;
 
 import Manager.EventManager;
 import Manager.Event;
-import Manager.EventListener;
+import Manager.Listener;
 import Manager.EventType;
 
 public class HMWatch implements IWatch {
@@ -94,7 +94,7 @@ public class HMWatch implements IWatch {
     }
 
     @Override
-    public void addListener(EventListener listener) {
+    public void addListener(Listener listener) {
         manager.subscribe(listener);
     }
 

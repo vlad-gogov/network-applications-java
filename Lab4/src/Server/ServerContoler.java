@@ -10,7 +10,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
 
-public class ServerContoler extends Thread implements EventListener {
+public class ServerContoler extends Thread implements Listener {
 
     protected EventManager eventManager = new EventManager();
 

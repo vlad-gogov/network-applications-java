@@ -1,7 +1,7 @@
 package Alarm;
 
 import Manager.Event;
-import Manager.EventListener;
+import Manager.Listener;
 import Manager.EventManager;
 import Manager.EventType;
 import Watch.IWatch;
@@ -45,7 +45,7 @@ public class HMAlarm implements IAlarm {
         throw new Exception("Seconds are unsupported");
     }
 
-    public void addSubcriber(EventListener eventListener) {
+    public void addSubcriber(Listener eventListener) {
         eventManager.subscribe(eventListener);
     }
 

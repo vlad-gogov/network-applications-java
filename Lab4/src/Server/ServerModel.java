@@ -2,7 +2,7 @@ package Server;
 
 import Alarm.IAlarm;
 import Manager.Event;
-import Manager.EventListener;
+import Manager.Listener;
 import Manager.EventManager;
 import Manager.EventType;
 import Watch.BWatch;
@@ -12,7 +12,7 @@ import Watch.TimeController;
 
 import java.util.LinkedList;
 
-public class ServerModel implements EventListener {
+public class ServerModel implements Listener {
     protected EventManager eventManager = new EventManager();
 
     private IWatch watch = BWatch.build(EWatch.HMSWatch);
@@ -22,8 +22,8 @@ public class ServerModel implements EventListener {
     public ServerModel() {
     }
 
-    public void addSubscriber(EventListener eventListner) {
-        eventManager.subscribe(eventListner);
+    public void addSubscriber(Listener listener) {
+        eventManager.subscribe(listener);
     }
 
     public void addAlarm(IAlarm alarm) {
@@ -45,8 +45,8 @@ public class ServerModel implements EventListener {
         return controller.isStart();
     }
 
-    public void addWatchSubscriber(EventListener eventListner) {
-        watch.addListener(eventListner);
+    public void addWatchSubscriber(Listener listener) {
+        watch.addListener(listener);
     }
 
     @Override

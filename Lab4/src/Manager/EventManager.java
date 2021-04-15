@@ -3,18 +3,18 @@ package Manager;
 import java.util.LinkedList;
 
 public class EventManager {
-    LinkedList<EventListener> listeners = new LinkedList<EventListener>();
+    LinkedList<Listener> listeners = new LinkedList<Listener>();
 
-    public void subscribe(EventListener listener) {
+    public void subscribe(Listener listener) {
         listeners.add(listener);
     }
 
-    public void unsubscribe(EventListener listener) {
+    public void unsubscribe(Listener listener) {
         listeners.add(listener);
     }
 
     public void notify(Event event) {
-        for (EventListener listener : listeners) {
+        for (Listener listener : listeners) {
             listener.signal(event);
         }
     }

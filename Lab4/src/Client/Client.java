@@ -5,12 +5,12 @@ import GUI.ClientWindow;
 import javax.swing.*;
 
 public class Client {
-    ClientController controller = new ClientController();
+    private ClientController controller = new ClientController();
 
     public Client() {
     }
 
-    public void addWindow(ClientWindow window) {
+    public void relation(ClientWindow window) {
         window.addSubscriber(controller);
         controller.addWatchSubscriber(window);
         controller.addSubscriber(window);
@@ -20,7 +20,7 @@ public class Client {
         JFrame frame = new JFrame("Client Window");
         Client client = new Client();
         ClientWindow window = new ClientWindow();
-        client.addWindow(window);
+        client.relation(window);
         frame.setContentPane(window.getPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

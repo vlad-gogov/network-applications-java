@@ -1,8 +1,8 @@
 package Alarm;
 
-import Manager.EventListener;
+import Manager.Listener;
 import Timer.ITimer;
 
-public interface IAlarm extends ITimer, EventListener {
-    public void addSubcriber(EventListener eventListener);
+public interface IAlarm extends ITimer, Listener {
+    public void addSubcriber(Listener eventListener);
 }

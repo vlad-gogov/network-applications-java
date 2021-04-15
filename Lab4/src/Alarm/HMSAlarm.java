@@ -1,7 +1,6 @@
 package Alarm;
 
 import Manager.Event;
-import Manager.EventListener;
 import Manager.EventType;
 import Watch.IWatch;
 

@@ -1,5 +1,5 @@
 package Manager;
 
-public interface EventListener {
+public interface Listener {
     void signal(Event event);
 }

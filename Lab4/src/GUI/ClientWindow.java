@@ -4,14 +4,14 @@ import Alarm.BAlarm;
 import Alarm.EAlarm;
 import Alarm.IAlarm;
 import Manager.Event;
-import Manager.EventListener;
+import Manager.Listener;
 import Manager.EventManager;
 import Manager.EventType;
 import Watch.IWatch;
 
 import javax.swing.*;
 
-public class ClientWindow implements EventListener {
+public class ClientWindow implements Listener {
     private JPanel panel;
     private JButton addAlarmButton;
     private JButton connectButton;
@@ -73,8 +73,8 @@ public class ClientWindow implements EventListener {
 
     }
 
-    public void addSubscriber(EventListener eventListener) {
-        eventManager.subscribe(eventListener);
+    public void addSubscriber(Listener listener) {
+        eventManager.subscribe(listener);
     }
 
     @Override

@@ -3,15 +3,14 @@ package GUI;
 
 import Alarm.IAlarm;
 import Manager.Event;
-import Manager.EventListener;
+import Manager.Listener;
 import Manager.EventManager;
 import Manager.EventType;
-import Server.*;
 import Watch.*;
 
 import javax.swing.*;
 
-public class ServerWindow implements EventListener {
+public class ServerWindow implements Listener {
     protected EventManager eventManager = new EventManager();
 
     private JPanel panel;
@@ -77,8 +76,8 @@ public class ServerWindow implements EventListener {
         return panel;
     }
 
-    public void addSubscriber(EventListener eventListner) {
-        eventManager.subscribe(eventListner);
+    public void addSubscriber(Listener listener) {
+        eventManager.subscribe(listener);
     }
 
     @Override

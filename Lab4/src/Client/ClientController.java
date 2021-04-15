@@ -1,6 +1,5 @@
 package Client;
 
-import Alarm.IAlarm;
 import GUI.ClientWindow;
 import Manager.*;
 import Watch.BWatch;
@@ -15,7 +14,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ClientController implements EventListener {
+public class ClientController implements Listener {
     public EventManager eventManager = new EventManager();
     IWatch watch = BWatch.build(EWatch.HMSWatch);
     TimeController watchController = null;
@@ -117,7 +116,7 @@ public class ClientController implements EventListener {
         }
     }
 
-    public void addSubscriber(EventListener eventListener) {
+    public void addSubscriber(Listener eventListener) {
         eventManager.subscribe(eventListener);
     }
 
