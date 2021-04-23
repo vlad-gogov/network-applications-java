@@ -7,3 +7,6 @@ maven
 .project
 Libraries
 out
+SQLiteStudio
+/**/lib
+db
