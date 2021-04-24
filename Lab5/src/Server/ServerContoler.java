@@ -54,15 +54,18 @@ public class ServerContoler extends Thread implements Listener {
                 String data = distream.readUTF();
                 System.out.println(data);
                 Event event = gson.fromJson(data, Event.class);
-                if (event.type == EventType.ADD_ALARM) {
+                if (event.type == EventType.ADD_ALARM_REQUEST) {
                     model.addAlarm(event.alarm);
                 }
-                else if (event.type == EventType.DELETE_ALARM) {
+                if (event.type == EventType.DELETE_ALARM_REQUEST) {
                     model.deleteAlarm(event.alarm);
                 }
+                else if (event.type == EventType.CLIENT_DISCONNECT) {
+                    break;
+                }
             }
+            c_socket.close();
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

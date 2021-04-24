@@ -50,9 +50,7 @@ public class ClientWindow implements Listener {
         IAlarm alarm = message.getSelectedValue();
         if (alarm == null)
             return;
-        int index = message.getSelectedIndex();
-        eventManager.notify(new Event(EventType.DELETE_ALARM, alarm));
-        model_message.remove(index);
+        eventManager.notify(new Event(EventType.DELETE_ALARM_REQUEST, alarm));
     }
 
     public void addAlarm() {
@@ -60,6 +58,7 @@ public class ClientWindow implements Listener {
             int minutes = (int)spinner_minutes.getValue();
             int seconds = (int)spinner_seconds.getValue();
             HMSAlarm alarm = new HMSAlarm();
+            System.out.println(alarm.getId());
             try {
                 alarm.setHours(hours);
                 alarm.setMinutes(minutes);
@@ -67,7 +66,7 @@ public class ClientWindow implements Listener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            eventManager.notify(new Event(EventType.ADD_ALARM, alarm));
+            eventManager.notify(new Event(EventType.ADD_ALARM_REQUEST, alarm));
         }
 
     public void connect() {
@@ -116,6 +115,7 @@ public class ClientWindow implements Listener {
                 if (model_message.get(i).equals(alarm))
                     model_message.remove(i);
             }
+            return;
         }
         if (event.type == EventType.ALARM_TRIGGER) {
             model_alarms.addElement(event.alarm);

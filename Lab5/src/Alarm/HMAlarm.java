@@ -9,15 +9,15 @@ import Watch.IWatch;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "hm_alarms")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = "hm_alarms")
 public class HMAlarm implements IAlarm {
     @Transient
     EventManager eventManager = new EventManager();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column (name = "id")
+    @Column
     public int id;
 
     @Column

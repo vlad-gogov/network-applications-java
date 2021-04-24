@@ -35,15 +35,19 @@ public class ServerModel implements Listener {
     public void addAlarm(IAlarm alarm) {
         alarm.addSubscriber(this);
         addWatchSubscriber(alarm);
-        eventManager.notify(new Event(EventType.ADD_ALARM, alarm));
         alarms.add(alarm);
         alarmDao.insertAlarm(alarm);
+        eventManager.notify(new Event(EventType.ADD_ALARM, alarm));
     }
 
     public void deleteAlarm(IAlarm alarm) {
-        eventManager.notify(new Event(EventType.DELETE_ALARM, alarm));
         alarm.removeSubscriber(this);
         alarmDao.deleteAlarm(alarm);
+        for (int i = 0; i < alarms.size(); i++) {
+            if (alarms.get(i).equals(alarm))
+                alarms.remove(i);
+        }
+        eventManager.notify(new Event(EventType.DELETE_ALARM, alarm));
     }
 
     public LinkedList<IAlarm> getAllAlarms() {
@@ -52,7 +56,7 @@ public class ServerModel implements Listener {
 
     public void getDBAlarms() {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        List<HMSAlarm> alarmList = session.createQuery("from hms_alarms", HMSAlarm.class).getResultList();
+        List<HMSAlarm> alarmList = session.createQuery("from HMSAlarm", HMSAlarm.class).getResultList();
         if (alarmList != null) {
             for (HMSAlarm alarm : alarmList) {
                 alarm.addSubscriber(this);
@@ -110,10 +114,6 @@ public class ServerModel implements Listener {
         }
         if (event.type == EventType.ALARM_TRIGGER) {
             eventManager.notify(event);
-            return;
-        }
-        if (event.type == EventType.DELETE_ALARM) {
-            deleteAlarm(event.alarm);
             return;
         }
         if (event.type == EventType.UPDATE_WATCH) {

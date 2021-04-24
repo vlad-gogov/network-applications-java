@@ -101,6 +101,14 @@ public class ClientController implements Listener {
                             watchController.cont();
                             continue;
                         }
+                        if (event.type == EventType.ADD_ALARM) {
+                            eventManager.notify(event);
+                            continue;
+                        }
+                        if (event.type == EventType.DELETE_ALARM) {
+                            eventManager.notify(event);
+                            continue;
+                        }
                         if (event.type == EventType.ALARM_TRIGGER) {
                             eventManager.notify(event);
                             continue;
@@ -138,11 +146,11 @@ public class ClientController implements Listener {
             }
             return;
         }
-        if (event.type == EventType.ADD_ALARM) {
+        if (event.type == EventType.ADD_ALARM_REQUEST) {
             send(event);
             return;
         }
-        if (event.type == EventType.DELETE_ALARM) {
+        if (event.type == EventType.DELETE_ALARM_REQUEST) {
             send(event);
             return;
         }
@@ -155,7 +163,7 @@ public class ClientController implements Listener {
     private void send(Event event) {
         if (thread != null) {
             String data = gson.toJson(event);
-            System.out.println(data);
+            //System.out.println(data);
             try {
                 dostream.writeUTF(data);
             } catch (IOException e) {

@@ -2,7 +2,9 @@ package Manager;
 
 public enum EventType {
     ADD_ALARM,
+    ADD_ALARM_REQUEST,
     DELETE_ALARM,
+    DELETE_ALARM_REQUEST,
     ALARM_TRIGGER,
     SET_WATCH,
     START_WATCH,
