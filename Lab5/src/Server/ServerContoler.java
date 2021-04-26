@@ -52,7 +52,6 @@ public class ServerContoler extends Thread implements Listener {
 
             while (true) {
                 String data = distream.readUTF();
-                System.out.println(data);
                 Event event = gson.fromJson(data, Event.class);
                 if (event.type == EventType.ADD_ALARM_REQUEST) {
                     model.addAlarm(event.alarm);

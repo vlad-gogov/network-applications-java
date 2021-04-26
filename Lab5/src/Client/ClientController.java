@@ -163,7 +163,6 @@ public class ClientController implements Listener {
     private void send(Event event) {
         if (thread != null) {
             String data = gson.toJson(event);
-            //System.out.println(data);
             try {
                 dostream.writeUTF(data);
             } catch (IOException e) {

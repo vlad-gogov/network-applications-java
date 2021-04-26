@@ -114,6 +114,8 @@ public class ServerModel implements Listener {
         }
         if (event.type == EventType.ALARM_TRIGGER) {
             eventManager.notify(event);
+            eventManager.notify(new Event(EventType.DELETE_ALARM, event.alarm));
+            deleteAlarm(event.alarm);
             return;
         }
         if (event.type == EventType.UPDATE_WATCH) {
