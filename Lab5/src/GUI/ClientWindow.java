@@ -1,7 +1,5 @@
 package GUI;
 
-import Alarm.BAlarm;
-import Alarm.EAlarm;
 import Alarm.HMSAlarm;
 import Alarm.IAlarm;
 import Manager.Event;
@@ -50,7 +48,7 @@ public class ClientWindow implements Listener {
         IAlarm alarm = message.getSelectedValue();
         if (alarm == null)
             return;
-        eventManager.notify(new Event(EventType.DELETE_ALARM_REQUEST, alarm));
+        eventManager.notify(new Event(EventType.DELETE_ALARM_SIGNAL, alarm));
     }
 
     public void addAlarm() {
@@ -66,7 +64,7 @@ public class ClientWindow implements Listener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            eventManager.notify(new Event(EventType.ADD_ALARM_REQUEST, alarm));
+            eventManager.notify(new Event(EventType.ADD_ALARM_SIGNAL, alarm));
         }
 
     public void connect() {

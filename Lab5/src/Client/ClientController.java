@@ -146,11 +146,11 @@ public class ClientController implements Listener {
             }
             return;
         }
-        if (event.type == EventType.ADD_ALARM_REQUEST) {
+        if (event.type == EventType.ADD_ALARM_SIGNAL) {
             send(event);
             return;
         }
-        if (event.type == EventType.DELETE_ALARM_REQUEST) {
+        if (event.type == EventType.DELETE_ALARM_SIGNAL) {
             send(event);
             return;
         }
